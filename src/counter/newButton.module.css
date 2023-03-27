@@ -1,0 +1,13 @@
+.customBtn{
+    color: aqua;
+    padding: 15px 10px;
+
+}
+.But{
+    background-color: aqua; /* Green */
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+.set{
+    border-radius: 20px;
+}
