@@ -2,19 +2,21 @@ import React, {ChangeEvent, useEffect, useState} from 'react';
 import s from './Counter.01.module.css'
 import {NewButton} from "./NewButton";
 import {UniversalInput} from "./UniversalInput";
+import {useDispatch, useSelector} from "react-redux";
+import {AppStateType} from "./bll/store";
 
 
 export const Counter01 = () => {
 
-    // const number = useSelector<AppStateType, number>(state => state.counter.number)
-    // const maxValue = useSelector<AppStateType, number>(state => state.counter.maxValue)
-    // const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
+    const number = useSelector<AppStateType, number>(state => state.counter.number)
+    const maxValue = useSelector<AppStateType, number>(state => state.counter.maxValue)
+    const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-    let [number, setNumber] = useState(0)
-    const [maxValue, setMaxValue] = useState(0)
-    const [startValue, setStartValue] = useState(0)
+    // let [number, setNumber] = useState(0)
+    // const [maxValue, setMaxValue] = useState(0)
+    // const [startValue, setStartValue] = useState(0)
     const [firstRendering, setFirstRendering] = useState(true)
 
 

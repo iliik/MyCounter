@@ -22,7 +22,7 @@ export const counterReducer = (state: initialStateType = initialState, action: A
         case "ADD-MAX-NUM":
             return {
                 ...state,
-                number: state.number + 1
+                maxValue: state.maxValue
             }
 
         default:
