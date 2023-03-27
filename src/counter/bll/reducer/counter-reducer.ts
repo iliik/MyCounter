@@ -5,10 +5,10 @@ const initialState = {
 }
 
 type initialStateType = typeof initialState
-type ActionsType = addNumACType |StartNumACType|addMaxNumACType
+type ActionsType = addNumACType | StartNumACType | addMaxNumACType
 
 export const counterReducer = (state: initialStateType = initialState, action: ActionsType): initialStateType => {
-    switch (action.type){
+    switch (action.type) {
         case "ADD-NUM":
             return {
                 ...state,
@@ -22,7 +22,7 @@ export const counterReducer = (state: initialStateType = initialState, action: A
         case "ADD-MAX-NUM":
             return {
                 ...state,
-                maxValue: state.maxValue
+                maxValue: state.maxValue - 1
             }
 
         default:
@@ -34,6 +34,12 @@ export type addNumACType = ReturnType<typeof setAddNumAC>
 export type StartNumACType = ReturnType<typeof setAddStartNumAC>
 export type addMaxNumACType = ReturnType<typeof setAddMaxNumAC>
 
-export const setAddNumAC = () => {return {type: "ADD-NUM"} as const}
-export const setAddStartNumAC = () => {return {type: "ADD-START-NUM"} as const}
-export const setAddMaxNumAC = () => {return {type: "ADD-MAX-NUM"} as const}
+export const setAddNumAC = () => {
+    return {type: "ADD-NUM"} as const
+}
+export const setAddStartNumAC = () => {
+    return {type: "ADD-START-NUM"} as const
+}
+export const setAddMaxNumAC = () => {
+    return {type: "ADD-MAX-NUM"} as const
+}

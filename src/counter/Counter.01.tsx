@@ -4,6 +4,7 @@ import {NewButton} from "./NewButton";
 import {UniversalInput} from "./UniversalInput";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "./bll/store";
+import {setAddMaxNumAC, setAddNumAC, setAddStartNumAC} from "./bll/reducer/counter-reducer";
 
 
 export const Counter01 = () => {
@@ -14,6 +15,9 @@ export const Counter01 = () => {
 
     const dispatch = useDispatch()
 
+
+    dispatch(setAddStartNumAC())
+    dispatch(setAddMaxNumAC())
     // let [number, setNumber] = useState(0)
     // const [maxValue, setMaxValue] = useState(0)
     // const [startValue, setStartValue] = useState(0)
@@ -38,9 +42,9 @@ export const Counter01 = () => {
             let newMaxValue = JSON.parse(maxValueItem)
             let newStartValueItem = JSON.parse(startValueItem)
 
-            setNumber(newNumber)
-            setMaxValue(newMaxValue)
-            setStartValue(newStartValueItem)
+            // setNumber(newNumber)
+            // setMaxValue(newMaxValue)
+            // setStartValue(newStartValueItem)
         }
 
         setFirstRendering(false)
@@ -48,22 +52,25 @@ export const Counter01 = () => {
 
 
     const onClickHandlerReset = () => {
-        setNumber(0)
+        // setNumber(0)
+        dispatch(setAddStartNumAC())
     }
     const onClickHandlerInc = () => {
         if (maxValue > startValue) {
-            //dispatch(addNumAC())
-            setNumber(number + 1)
+            dispatch(setAddNumAC())
+            // setNumber(number + 1)
         }
     }
     const onClickHandlerDelete = () => {
-        setNumber(number)
+        // setNumber(number)
         if (number < maxValue) {
-            setNumber(--number)
+            // setNumber(--number)
+            dispatch(setAddMaxNumAC())
         }
     }
     const setLocalHandler = () => {
-        setNumber(startValue)
+        // setNumber(startValue)
+        dispatch(setAddStartNumAC())
     }
 
     const inputMaxHandler = (e: ChangeEvent<HTMLInputElement>) => {
