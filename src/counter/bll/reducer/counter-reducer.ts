@@ -34,12 +34,6 @@ export type addNumACType = ReturnType<typeof setAddNumAC>
 export type StartNumACType = ReturnType<typeof setAddStartNumAC>
 export type addMaxNumACType = ReturnType<typeof setAddMaxNumAC>
 
-export const setAddNumAC = () => {
-    return {type: "ADD-NUM"} as const
-}
-export const setAddStartNumAC = () => {
-    return {type: "ADD-START-NUM"} as const
-}
-export const setAddMaxNumAC = () => {
-    return {type: "ADD-MAX-NUM"} as const
-}
+export const setAddNumAC = () => ({type: "ADD-NUM"} as const)
+export const setAddStartNumAC = () => ({type: "ADD-START-NUM"} as const)
+export const setAddMaxNumAC = () => ({type: "ADD-MAX-NUM"} as const)
