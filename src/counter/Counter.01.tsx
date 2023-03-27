@@ -9,46 +9,44 @@ import {setAddMaxNumAC, setAddNumAC, setAddStartNumAC} from "./bll/reducer/count
 
 export const Counter01 = () => {
 
-    const number = useSelector<AppStateType, number>(state => state.counter.number)
+    const value = useSelector<AppStateType, number>(state => state.counter.value)
     const maxValue = useSelector<AppStateType, number>(state => state.counter.maxValue)
     const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
 
     const dispatch = useDispatch()
 
 
-    dispatch(setAddStartNumAC())
-    dispatch(setAddMaxNumAC())
     // let [number, setNumber] = useState(0)
     // const [maxValue, setMaxValue] = useState(0)
     // const [startValue, setStartValue] = useState(0)
-    const [firstRendering, setFirstRendering] = useState(true)
+    // const [firstRendering, setFirstRendering] = useState(true)
 
 
-    useEffect(() => {
-        if (!firstRendering) {
-            localStorage.setItem('counterNumber', JSON.stringify(number))
-            localStorage.setItem('counterMaxValue', JSON.stringify(maxValue))
-            localStorage.setItem('counterStartValue', JSON.stringify(startValue))
-        }
-    }, [number, maxValue, startValue])
+    // useEffect(() => {
+    //     if (!firstRendering) {
+    //         localStorage.setItem('counterNumber', JSON.stringify(number))
+    //         localStorage.setItem('counterMaxValue', JSON.stringify(maxValue))
+    //         localStorage.setItem('counterStartValue', JSON.stringify(startValue))
+    //     }
+    // }, [number, maxValue, startValue])
 
-    useEffect(() => {
-        let numberItem = localStorage.getItem('counterNumber')
-        let maxValueItem = localStorage.getItem('counterMaxValue')
-        let startValueItem = localStorage.getItem('counterStartValue')
-
-        if (numberItem && maxValueItem && startValueItem) {
-            let newNumber = JSON.parse(numberItem)
-            let newMaxValue = JSON.parse(maxValueItem)
-            let newStartValueItem = JSON.parse(startValueItem)
-
-            // setNumber(newNumber)
-            // setMaxValue(newMaxValue)
-            // setStartValue(newStartValueItem)
-        }
-
-        setFirstRendering(false)
-    }, [])
+    // useEffect(() => {
+    //     let numberItem = localStorage.getItem('counterNumber')
+    //     let maxValueItem = localStorage.getItem('counterMaxValue')
+    //     let startValueItem = localStorage.getItem('counterStartValue')
+    //
+    //     if (numberItem && maxValueItem && startValueItem) {
+    //         // let newNumber = JSON.parse(numberItem)
+    //         // let newMaxValue = JSON.parse(maxValueItem)
+    //         // let newStartValueItem = JSON.parse(startValueItem)
+    //
+    //         // setNumber(newNumber)
+    //         // setMaxValue(newMaxValue)
+    //         // setStartValue(newStartValueItem)
+    //     }
+    //
+    //     setFirstRendering(false)
+    // }, [])
 
 
     const onClickHandlerReset = () => {
@@ -63,7 +61,7 @@ export const Counter01 = () => {
     }
     const onClickHandlerDelete = () => {
         // setNumber(number)
-        if (number < maxValue) {
+        if (value < maxValue) {
             // setNumber(--number)
             dispatch(setAddMaxNumAC())
         }
@@ -74,19 +72,19 @@ export const Counter01 = () => {
     }
 
     const inputMaxHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setMaxValue(Number(e.currentTarget.value))
+        // setMaxValue(Number(e.currentTarget.value))
     }
     const inputStartHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setStartValue(Number(e.currentTarget.value))
+        // setStartValue(Number(e.currentTarget.value))
     }
     return (
         <div className={s.counterContainer}>
             <div className={s.watchNumber}>
-                <h3 className={number === maxValue ? s.error : s.ok}>{number}</h3>
+                <h3 className={value === maxValue ? s.error : s.ok}>{value}</h3>
             </div>
             <div className={s.buttonContainer}>
-                <NewButton title={'inc'} callback={onClickHandlerInc} disable={number === maxValue}/>
-                <NewButton title={'reset'} callback={onClickHandlerReset} disable={number !== maxValue}/>
+                <NewButton title={'inc'} callback={onClickHandlerInc} disable={value === maxValue}/>
+                <NewButton title={'reset'} callback={onClickHandlerReset} disable={value !== maxValue}/>
                 <NewButton title={'delete'} callback={onClickHandlerDelete}/>
 
             </div>
