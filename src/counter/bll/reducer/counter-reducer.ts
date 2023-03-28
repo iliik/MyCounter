@@ -47,7 +47,7 @@ export const counterReducer = (state: initialStateType = initialState, action: A
         case "DELETE":
             return {
                 ...state,
-                value: state.value -1
+                value: action.value -1
             }
         default:
             return state

@@ -76,8 +76,6 @@ export const Counter01 = () => {
         if (value < maxValue) {
             // setNumber(--number)
             dispatch(deleteTC(value))
-
-
         }
     }
     const setLocalHandler = () => {
@@ -109,7 +107,7 @@ export const Counter01 = () => {
             <div className={s.buttonContainer}>
                 <NewButton title={'inc'} callback={onClickHandlerInc} disable={value === maxValue}/>
                 <NewButton title={'reset'} callback={onClickHandlerReset} disable={value !== maxValue}/>
-                <NewButton title={'delete'} callback={onClickHandlerDelete}/>
+                <NewButton title={'delete'} callback={onClickHandlerDelete} disable={value <= startValue}/>
 
             </div>
             <div className={s.inputContainer}>
