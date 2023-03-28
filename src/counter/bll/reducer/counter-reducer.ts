@@ -69,25 +69,21 @@ export const setAddMaxNumAC = (maxValue: number) => ({type: "ADD-MAX-NUM", maxVa
 export const setValueFromLocalStorageAC = () => ({type: "SET-VALUE-FROM-LOCAL-STORAGE"} as const)
 export const deleteAC = (value:number) => ({type: "DELETE",value} as const)
 
-export const incValuesTC = (value: number) => (dispatch: Dispatch) => {
-    // localStorage.setItem('counterValue', JSON.stringify(value))
+export const incValuesTC = () => (dispatch: Dispatch) => {
     dispatch(setAddNumAC())
 }
 export const incStartNumTC = (startValue: number) => (dispatch: Dispatch) => {
-    // localStorage.setItem('counterStartValue', JSON.stringify(startValue))
     dispatch(setAddStartNumAC(startValue))
 }
 export const incMaxNumTC = (maxValue: number) => (dispatch: Dispatch) => {
-    // localStorage.setItem('counterMaxValue', JSON.stringify(maxValue))
+
     dispatch(setAddMaxNumAC(maxValue))
 }
 export const incResetTC = (value:number ) => (dispatch: Dispatch) => {
-    // localStorage.setItem('counterResetValue', JSON.stringify(value))
     dispatch(setResetAC(value))
 }
 
 export const deleteTC = (value:number ) => (dispatch: Dispatch) => {
-    // localStorage.setItem('counterDelete', JSON.stringify(value))
     dispatch(deleteAC(value))
 }
 
