@@ -5,6 +5,7 @@ import {UniversalInput} from "./UniversalInput";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "./bll/store";
 import {
+    deleteTC,
     incMaxNumTC, incResetTC,
     incStartNumTC,
     incValuesTC,
@@ -74,8 +75,8 @@ export const Counter01 = () => {
         // setNumber(number)
         if (value < maxValue) {
             // setNumber(--number)
+            dispatch(deleteTC(value))
 
-            dispatch(incMaxNumTC(-1))
 
         }
     }
@@ -92,11 +93,13 @@ export const Counter01 = () => {
 
         dispatch(incMaxNumTC(+e.currentTarget.value))
 
+
     }
     const inputStartHandler = (e: ChangeEvent<HTMLInputElement>) => {
 
         dispatch(incStartNumTC(+e.currentTarget.value))
         // setStartValue(Number(e.currentTarget.value))
+
     }
     return (
         <div className={s.counterContainer}>
