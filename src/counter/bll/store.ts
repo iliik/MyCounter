@@ -1,20 +1,19 @@
 import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
 import {ActionsType, counterReducer} from "./reducer/counter-reducer";
 import thunk, {ThunkDispatch} from "redux-thunk";
+import {loadState, saveState} from "./utils/localStorage";
 
 
 const rootReducer = combineReducers({
     counter: counterReducer
 })
-let preloadedState;
-const persistedTodosString = localStorage.getItem('value')
-if (persistedTodosString) {
-    preloadedState = JSON.parse(persistedTodosString)
-}
-export const store = legacy_createStore(rootReducer, preloadedState,applyMiddleware(thunk))
+
+export const store = legacy_createStore(rootReducer, loadState(), applyMiddleware(thunk))
 
 store.subscribe(() => {
-    localStorage.setItem('value', JSON.stringify(store.getState()))
+    saveState({
+        counter: store.getState().counter
+    })
 
 })
 
