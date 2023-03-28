@@ -70,23 +70,24 @@ export const setValueFromLocalStorageAC = () => ({type: "SET-VALUE-FROM-LOCAL-ST
 export const deleteAC = (value:number) => ({type: "DELETE",value} as const)
 
 export const incValuesTC = (value: number) => (dispatch: Dispatch) => {
-    localStorage.setItem('counterValue', JSON.stringify(value))
+    // localStorage.setItem('counterValue', JSON.stringify(value))
     dispatch(setAddNumAC())
 }
 export const incStartNumTC = (startValue: number) => (dispatch: Dispatch) => {
-    localStorage.setItem('counterStartValue', JSON.stringify(startValue))
+    // localStorage.setItem('counterStartValue', JSON.stringify(startValue))
     dispatch(setAddStartNumAC(startValue))
 }
 export const incMaxNumTC = (maxValue: number) => (dispatch: Dispatch) => {
-    localStorage.setItem('counterMaxValue', JSON.stringify(maxValue))
+    // localStorage.setItem('counterMaxValue', JSON.stringify(maxValue))
     dispatch(setAddMaxNumAC(maxValue))
 }
 export const incResetTC = (value:number ) => (dispatch: Dispatch) => {
-    localStorage.setItem('counterResetValue', JSON.stringify(value))
+    // localStorage.setItem('counterResetValue', JSON.stringify(value))
     dispatch(setResetAC(value))
 }
 
 export const deleteTC = (value:number ) => (dispatch: Dispatch) => {
-    localStorage.setItem('counterDelete', JSON.stringify(value))
+    // localStorage.setItem('counterDelete', JSON.stringify(value))
     dispatch(deleteAC(value))
 }
+
