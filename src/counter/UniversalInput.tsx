@@ -5,6 +5,7 @@ type UniversalInputType = {
     label: string
     value: number
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
+
 }
 
 export const UniversalInput = (props: UniversalInputType) => {

@@ -1,19 +1,26 @@
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, {ChangeEvent, useEffect} from 'react';
 import s from './Counter.01.module.css'
 import {NewButton} from "./NewButton";
 import {UniversalInput} from "./UniversalInput";
 import {useDispatch, useSelector} from "react-redux";
 import {AppStateType} from "./bll/store";
-import {setAddMaxNumAC, setAddNumAC, setAddStartNumAC} from "./bll/reducer/counter-reducer";
+import {
+    incMaxNumTC, incResetTC,
+    incStartNumTC,
+    incValuesTC,
+    setAddNumAC,
+    setValueFromLocalStorageAC
+} from "./bll/reducer/counter-reducer";
+import {useAppDispatch, useAppSelector} from "./bll/hook/hook";
 
 
 export const Counter01 = () => {
 
-    const value = useSelector<AppStateType, number>(state => state.counter.value)
-    const maxValue = useSelector<AppStateType, number>(state => state.counter.maxValue)
-    const startValue = useSelector<AppStateType, number>(state => state.counter.startValue)
+    const value = useAppSelector(state => state.counter.value)
+    const maxValue = useAppSelector(state => state.counter.maxValue)
+    const startValue = useAppSelector(state => state.counter.startValue)
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
 
 
     // let [number, setNumber] = useState(0)
@@ -30,32 +37,36 @@ export const Counter01 = () => {
     //     }
     // }, [number, maxValue, startValue])
 
-    // useEffect(() => {
-    //     let numberItem = localStorage.getItem('counterNumber')
-    //     let maxValueItem = localStorage.getItem('counterMaxValue')
-    //     let startValueItem = localStorage.getItem('counterStartValue')
-    //
-    //     if (numberItem && maxValueItem && startValueItem) {
-    //         // let newNumber = JSON.parse(numberItem)
-    //         // let newMaxValue = JSON.parse(maxValueItem)
-    //         // let newStartValueItem = JSON.parse(startValueItem)
-    //
-    //         // setNumber(newNumber)
-    //         // setMaxValue(newMaxValue)
-    //         // setStartValue(newStartValueItem)
-    //     }
-    //
-    //     setFirstRendering(false)
-    // }, [])
+    useEffect(() => {
+        let valueItem = localStorage.getItem('counterNumber')
+        let maxValueItem = localStorage.getItem('counterMaxValue')
+        let startValueItem = localStorage.getItem('counterStartValue')
+
+        if (valueItem && maxValueItem && startValueItem) {
+            // let newNumber = JSON.parse(numberItem)
+            // let newMaxValue = JSON.parse(maxValueItem)
+            // let newStartValueItem = JSON.parse(startValueItem)
+            //
+            // setNumber(newNumber)
+            // setMaxValue(newMaxValue)
+            // setStartValue(newStartValueItem)
+        }
+
+        // setFirstRendering(false)
+    }, [])
 
 
     const onClickHandlerReset = () => {
+        dispatch(incResetTC(value))
         // setNumber(0)
-        dispatch(setAddStartNumAC())
+        // dispatch(setAddStartNumAC())
+
     }
     const onClickHandlerInc = () => {
         if (maxValue > startValue) {
-            dispatch(setAddNumAC())
+
+            dispatch(incValuesTC(+1))
+
             // setNumber(number + 1)
         }
     }
@@ -63,18 +74,28 @@ export const Counter01 = () => {
         // setNumber(number)
         if (value < maxValue) {
             // setNumber(--number)
-            dispatch(setAddMaxNumAC())
+
+            dispatch(incMaxNumTC(-1))
+
         }
     }
     const setLocalHandler = () => {
+        dispatch(setValueFromLocalStorageAC())
         // setNumber(startValue)
-        dispatch(setAddStartNumAC())
+        // @ts-ignore
+        // dispatch(incMaxNumTC(-1))
+
     }
 
     const inputMaxHandler = (e: ChangeEvent<HTMLInputElement>) => {
         // setMaxValue(Number(e.currentTarget.value))
+
+        dispatch(incMaxNumTC(+e.currentTarget.value))
+
     }
     const inputStartHandler = (e: ChangeEvent<HTMLInputElement>) => {
+
+        dispatch(incStartNumTC(+e.currentTarget.value))
         // setStartValue(Number(e.currentTarget.value))
     }
     return (
