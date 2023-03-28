@@ -11,13 +11,11 @@ const persistedTodosString = localStorage.getItem('value')
 if (persistedTodosString) {
     preloadedState = JSON.parse(persistedTodosString)
 }
+export const store = legacy_createStore(rootReducer, preloadedState,applyMiddleware(thunk))
 
-
-export const store = legacy_createStore(rootReducer, applyMiddleware(thunk))
 store.subscribe(() => {
-    localStorage.setItem('value', JSON.stringify(store.getState().counter.value))
-    localStorage.setItem('startValue', JSON.stringify(store.getState().counter.startValue))
-    localStorage.setItem('maxValue', JSON.stringify(store.getState().counter.maxValue))
+    localStorage.setItem('value', JSON.stringify(store.getState()))
+
 })
 
 

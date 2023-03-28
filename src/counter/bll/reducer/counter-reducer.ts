@@ -69,7 +69,7 @@ export const setAddMaxNumAC = (maxValue: number) => ({type: "ADD-MAX-NUM", maxVa
 export const setValueFromLocalStorageAC = () => ({type: "SET-VALUE-FROM-LOCAL-STORAGE"} as const)
 export const deleteAC = (value:number) => ({type: "DELETE",value} as const)
 
-export const incValuesTC = () => (dispatch: Dispatch) => {
+export const incValuesTC = (value:number) => (dispatch: Dispatch) => {
     dispatch(setAddNumAC())
 }
 export const incStartNumTC = (startValue: number) => (dispatch: Dispatch) => {
