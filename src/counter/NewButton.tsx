@@ -8,7 +8,7 @@ type NewBattonType = {
     disable?: boolean
 }
 
-export const NewButton = (props: NewBattonType) => {
+export const NewButton = React.memo((props: NewBattonType) => {
 
     const onClickHandler = () => {
         props.callback()
@@ -24,5 +24,5 @@ export const NewButton = (props: NewBattonType) => {
 
         </div>
     );
-};
+} )
 

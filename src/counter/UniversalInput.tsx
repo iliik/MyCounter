@@ -7,7 +7,7 @@ type UniversalInputType = {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-export const UniversalInput = (props: UniversalInputType) => {
+export const UniversalInput = React.memo((props: UniversalInputType) => {
 
     return (
         <div>
@@ -21,5 +21,5 @@ export const UniversalInput = (props: UniversalInputType) => {
             />
         </div>
     );
-};
+})
 
