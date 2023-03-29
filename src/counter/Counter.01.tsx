@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useEffect} from 'react';
+import React, {ChangeEvent, useCallback, useEffect} from 'react';
 import s from './Counter.01.module.css'
 import {NewButton} from "./NewButton";
 import {UniversalInput} from "./UniversalInput";
@@ -13,7 +13,7 @@ import {
 import {useAppDispatch, useAppSelector} from "./bll/hook/hook";
 
 
-export const Counter01 = () => {
+export const Counter01 = React.memo(() => {
 
     const value = useAppSelector(state => state.counter.value)
     const maxValue = useAppSelector(state => state.counter.maxValue)
@@ -21,29 +21,23 @@ export const Counter01 = () => {
 
     const dispatch = useAppDispatch()
 
-
-    useEffect(() => {
-
-    }, [])
-
-
-    const onClickHandlerReset = () => {
+    const onClickHandlerReset = useCallback(() => {
         dispatch(incResetTC(value))
 
-    }
-    const onClickHandlerInc = () => {
+    }, [])
+    const onClickHandlerInc = useCallback(() => {
         if (maxValue > startValue) {
             dispatch(incValuesTC(+1))
         }
-    }
-    const onClickHandlerDelete = () => {
+    }, [])
+    const onClickHandlerDelete = useCallback(() => {
         if (value < maxValue) {
             dispatch(deleteTC(value))
         }
-    }
-    const setLocalHandler = () => {
+    }, [])
+    const setLocalHandler = useCallback(() => {
         dispatch(setValueFromLocalStorageAC())
-    }
+    }, [])
 
     const inputMaxHandler = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch(incMaxNumTC(+e.currentTarget.value))
@@ -71,4 +65,4 @@ export const Counter01 = () => {
             </div>
         </div>
     )
-}
+})
