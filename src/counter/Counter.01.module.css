@@ -1,4 +1,5 @@
 .counterContainer {
+
     text-align: center;
     max-width: 350px;
     margin-left: auto;
@@ -9,7 +10,8 @@
     display: flex;
     flex-direction: column;
     row-gap: 20px;
-    padding: 20px 3px;
+    padding: 20px 2px;
+
 }
 
 .watchNumber {
@@ -24,12 +26,19 @@
 
 .error {
     color: red;
-    font-size: 70px;
+    font-size:xxx-large;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+   margin-bottom: auto;
 }
 
 .ok {
     font-size:xxx-large;
-    color: black;
+    color: #050505;
 }
 
 .buttonContainer {
