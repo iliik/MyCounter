@@ -13,7 +13,7 @@ import {
 import {useAppDispatch, useAppSelector} from "./bll/hook/hook";
 
 
-export const Counter01 = React.memo(() => {
+export const Counter01 = () => {
 
     const value = useAppSelector(state => state.counter.value)
     const maxValue = useAppSelector(state => state.counter.maxValue)
@@ -23,28 +23,27 @@ export const Counter01 = React.memo(() => {
 
     const onClickHandlerReset = useCallback(() => {
         dispatch(incResetTC(value))
-
-    }, [])
+    }, [dispatch])
     const onClickHandlerInc = useCallback(() => {
         if (maxValue > startValue) {
             dispatch(incValuesTC(+1))
         }
-    }, [])
-    const onClickHandlerDelete = useCallback(() => {
+    }, [dispatch])
+    const onClickHandlerDelete = () => {
         if (value < maxValue) {
             dispatch(deleteTC(value))
         }
-    }, [])
+    }
     const setLocalHandler = useCallback(() => {
         dispatch(setValueFromLocalStorageAC())
-    }, [])
+    }, [dispatch])
 
-    const inputMaxHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const inputMaxHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         dispatch(incMaxNumTC(+e.currentTarget.value))
-    }
-    const inputStartHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    }, [dispatch])
+    const inputStartHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         dispatch(incStartNumTC(+e.currentTarget.value))
-    }
+    }, [dispatch])
     return (
         <div className={s.counterContainer}>
             <div className={s.watchNumber}>
@@ -65,4 +64,4 @@ export const Counter01 = React.memo(() => {
             </div>
         </div>
     )
-})
+}

@@ -16,8 +16,7 @@ export type ActionsType =
     | SetResetACType
 |DeleteACType
 
-export const counterReducer = (state: initialStateType = initialState, action: ActionsType): initialStateType => {
-
+export const counterReducer =  (state: initialStateType = initialState, action: ActionsType): initialStateType => {
     switch (action.type) {
         case "ADD-NUM":
             return {
